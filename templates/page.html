@@ -10,14 +10,14 @@
 </head>
 <body>
     <h1>Delivery Bot Control</h1>
-    <div><button onclick="senf('forward')">Forward</button></div>
+    <div><button onclick="send('forward')">Forward</button></div>
     <div>
         <button onclick="send('left')">Left</button>
         <button onclick="send('stop')">STOP</button>
         <button onclick="send('right')">Right</button>
     </div>
     <div><button onclick="send('backward')">Back</button></div>
-    <div id=""status">Ready</div>
+    <div id="status">Ready</div>
     <script>
         async function send(cmd) {
             const r = await fetch('/move/' + cmd);
