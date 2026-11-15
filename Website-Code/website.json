@@ -1,0 +1,6 @@
+{
+  "website_port": 8890,
+  "camera_port": 8879,
+  "robot_api_url": "http://127.0.0.1:8891",
+  "description": "Laptop website only. The Pi runs a separate JSON API on 8891. Forward Pi camera port 8879 and robot API 8891 over SSH before connecting."
+}

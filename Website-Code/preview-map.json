@@ -1,0 +1,316 @@
+{
+  "schema_version": 1,
+  "title": "USF Engineering / Delivery routes",
+  "reference": "docs/planning/route-checkpoints-reference.png",
+  "reference_credit": "User-supplied annotated Google Maps screenshot; app map is a project-authored schematic trace, not Google map tiles.",
+  "calibration": "DRAFT: image-local coordinates. Scale, widths, names and home are test assumptions. No surveyed GPS coordinates. Do not deploy this map on hardware.",
+  "metres_per_pixel": 0.1,
+  "path_width_m": 2.4,
+  "origin_pixel": [
+    223,
+    547
+  ],
+  "home": "J",
+  "gps_anchor": null,
+  "nodes": [
+    {
+      "id": "A",
+      "name": "Chemistry North",
+      "pixel": [
+        202,
+        107
+      ]
+    },
+    {
+      "id": "B",
+      "name": "Chemistry West",
+      "pixel": [
+        136,
+        130
+      ]
+    },
+    {
+      "id": "C",
+      "name": "North Junction",
+      "pixel": [
+        178,
+        184
+      ]
+    },
+    {
+      "id": "D",
+      "name": "Fountain Walk",
+      "pixel": [
+        167,
+        258
+      ]
+    },
+    {
+      "id": "E",
+      "name": "Science Center Walk",
+      "pixel": [
+        155,
+        302
+      ]
+    },
+    {
+      "id": "F",
+      "name": "East Garden Walk",
+      "pixel": [
+        222,
+        305
+      ]
+    },
+    {
+      "id": "G",
+      "name": "West Engineering Walk",
+      "pixel": [
+        185,
+        433
+      ]
+    },
+    {
+      "id": "H",
+      "name": "CAS Junction",
+      "pixel": [
+        227,
+        434
+      ]
+    },
+    {
+      "id": "I",
+      "name": "Engineering West",
+      "pixel": [
+        190,
+        571
+      ]
+    },
+    {
+      "id": "J",
+      "name": "Engineering South / Home",
+      "pixel": [
+        223,
+        547
+      ]
+    },
+    {
+      "id": "K",
+      "name": "ENC Delivery Loop",
+      "pixel": [
+        380,
+        580
+      ]
+    },
+    {
+      "id": "L",
+      "name": "Loop merge",
+      "pixel": [
+        341,
+        557
+      ],
+      "checkpoint": false
+    },
+    {
+      "id": "M",
+      "name": "Diagonal merge",
+      "pixel": [
+        322,
+        558
+      ],
+      "checkpoint": false
+    }
+  ],
+  "edges": [
+    {
+      "from": "A",
+      "to": "B",
+      "via_pixels": [
+        [
+          182,
+          114
+        ]
+      ]
+    },
+    {
+      "from": "B",
+      "to": "C",
+      "via_pixels": [
+        [
+          150,
+          157
+        ]
+      ]
+    },
+    {
+      "from": "C",
+      "to": "A"
+    },
+    {
+      "from": "C",
+      "to": "D",
+      "via_pixels": [
+        [
+          177,
+          218
+        ],
+        [
+          174,
+          243
+        ]
+      ]
+    },
+    {
+      "from": "D",
+      "to": "E"
+    },
+    {
+      "from": "D",
+      "to": "F",
+      "via_pixels": [
+        [
+          191,
+          283
+        ]
+      ]
+    },
+    {
+      "from": "E",
+      "to": "G",
+      "via_pixels": [
+        [
+          171,
+          348
+        ],
+        [
+          180,
+          391
+        ]
+      ]
+    },
+    {
+      "from": "F",
+      "to": "H"
+    },
+    {
+      "from": "G",
+      "to": "I",
+      "via_pixels": [
+        [
+          187,
+          486
+        ],
+        [
+          181,
+          529
+        ]
+      ],
+      "note": "Short red-line gap near west lower bend interpreted as continuous; confirm on site."
+    },
+    {
+      "from": "H",
+      "to": "J"
+    },
+    {
+      "from": "H",
+      "to": "L",
+      "via_pixels": [
+        [
+          267,
+          436
+        ],
+        [
+          294,
+          448
+        ],
+        [
+          313,
+          483
+        ],
+        [
+          330,
+          526
+        ]
+      ]
+    },
+    {
+      "from": "H",
+      "to": "M",
+      "via_pixels": [
+        [
+          252,
+          479
+        ],
+        [
+          286,
+          513
+        ]
+      ]
+    },
+    {
+      "from": "J",
+      "to": "M",
+      "via_pixels": [
+        [
+          267,
+          559
+        ]
+      ]
+    },
+    {
+      "from": "M",
+      "to": "L"
+    },
+    {
+      "from": "L",
+      "to": "K",
+      "via_pixels": [
+        [
+          374,
+          558
+        ],
+        [
+          388,
+          569
+        ],
+        [
+          389,
+          582
+        ]
+      ]
+    },
+    {
+      "from": "K",
+      "to": "I",
+      "via_pixels": [
+        [
+          348,
+          591
+        ],
+        [
+          285,
+          598
+        ],
+        [
+          236,
+          597
+        ],
+        [
+          205,
+          586
+        ]
+      ]
+    }
+  ],
+  "navigation": {
+    "cruise_speed_mps": 0.15,
+    "pivot_side_speed_mps": 0.065,
+    "pivot_threshold_degrees": 32,
+    "heading_gain": 0.12,
+    "waypoint_tolerance_m": 0.23,
+    "maximum_fix_age_s": 2.5,
+    "maximum_uncertainty_m": 0.35,
+    "maximum_cross_track_m": 0.5,
+    "app_heartbeat_timeout_s": 5.0,
+    "robot_footprint_radius_m": 0.23
+  }
+}

@@ -1,0 +1,264 @@
+<!doctype html>
+<!-- Project-authored laptop delivery interface. See README.md and CREDITS.md. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>USF Delivery Lab</title>
+    <link rel="stylesheet" href="/app.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/" aria-label="Delivery Lab home"
+        ><span class="brand-icon">↗</span
+        ><span
+          >DELIVERY<span class="brand-light">LAB</span
+          ><small>USF ENGINEERING · ROBOT TESTBED</small></span
+        ></a
+      ><span class="environment">WEBOTS / SOFTWARE TEST</span>
+      <div id="connection" class="connection"><i></i><span>Connecting</span></div>
+    </header>
+    <main>
+      <div class="page-heading">
+        <div>
+          <div class="eyebrow">CAMPUS DELIVERY / 01</div>
+          <h1>One route. Your next stop.</h1>
+          <p>Call the robot to a checkpoint. Follow its journey here.</p>
+        </div>
+        <span class="version"
+          >DELIVERY PROTOTYPE<br /><strong>PI 5 + ESP32</strong></span
+        >
+      </div>
+      <nav aria-label="Dashboard sections">
+        <button class="tab active" data-tab="overview">Mission control</button
+        ><button class="tab" data-tab="components">
+          Component coverage <span>19</span></button
+        ><button class="tab" data-tab="tests">Test conditions</button>
+      </nav>
+      <section id="overview" class="tab-panel">
+        <div class="workspace">
+          <section class="panel map-panel">
+            <div class="panel-heading">
+              <div>
+                <span class="eyebrow">APPROVED PATH NETWORK</span>
+                <h2>Engineering campus</h2>
+              </div>
+              <button id="fit-map" class="quiet" title="Reset map selection">
+                Reset view ↗
+              </button>
+            </div>
+            <div class="map-canvas">
+              <svg
+                id="campus-map"
+                viewBox="68 73 382 548"
+                role="group"
+                aria-label="Draft campus delivery map with selectable checkpoints"
+              >
+                <defs>
+                  <pattern
+                    id="grid"
+                    width="18"
+                    height="18"
+                    patternUnits="userSpaceOnUse"
+                  >
+                    <path
+                      d="M 18 0 L 0 0 0 18"
+                      fill="none"
+                      stroke="#ffffff"
+                      stroke-opacity=".025"
+                      stroke-width=".5"
+                    />
+                  </pattern>
+                </defs>
+                <rect x="0" y="0" width="512" height="650" fill="#14231e" />
+                <rect x="0" y="0" width="512" height="650" fill="url(#grid)" />
+                <g id="landmarks"></g>
+                <g id="routes"></g>
+                <path
+                  id="planned-route"
+                  fill="none"
+                  stroke="#d6f77f"
+                  stroke-width="5"
+                  stroke-linejoin="round"
+                  stroke-linecap="round"
+                />
+                <g id="stops"></g>
+                <g id="robot-marker" class="hidden">
+                  <circle r="14" fill="#d6f77f" opacity=".14" />
+                  <circle r="8" fill="#d6f77f" stroke="#15231a" stroke-width="2" />
+                  <path d="M-3 3L0-5L3 3L0 1Z" fill="#17221c" />
+                </g>
+                <g transform="translate(420 104)">
+                  <path d="M0 10V-9M-4-4L0-9L4-4" stroke="#91a99a" fill="none" />
+                  <text y="23" text-anchor="middle" fill="#91a99a" font-size="8">
+                    N*
+                  </text>
+                </g>
+              </svg>
+              <div class="map-key">
+                <span><i class="line red"></i>Approved path</span
+                ><span><i class="dot cyan"></i>Checkpoint</span
+                ><span><i class="line lime"></i>Route ahead</span>
+              </div>
+              <span class="map-draft">IMAGE-TRACED DRAFT · GPS NOT SURVEYED</span>
+            </div>
+            <div class="map-footer">
+              <span
+                ><i class="dot lime"></i> Robot position comes from GNSS + wheel/IMU
+                readings</span
+              ><span>11 stops</span>
+            </div>
+          </section>
+          <aside class="mission-column">
+            <section class="panel dispatch-panel">
+              <div class="panel-heading">
+                <div>
+                  <span class="eyebrow">MAKE A DELIVERY</span>
+                  <h2>Where should we go?</h2>
+                </div>
+                <span class="step">01</span>
+              </div>
+              <label for="destination">Destination checkpoint</label
+              ><select id="destination">
+                <option value="">Select a stop on the map</option>
+              </select>
+              <div id="destination-detail" class="destination-detail">
+                Choose a blue checkpoint or use the list above.
+              </div>
+              <button id="dispatch" class="primary" disabled>
+                Send robot <span>↗</span>
+              </button>
+              <div class="divider"></div>
+              <div class="status-line">
+                <span class="eyebrow">CURRENT MISSION</span
+                ><span id="mission-state" class="pill">WAITING</span>
+              </div>
+              <h3 id="mission-title">Ready for a request</h3>
+              <p id="mission-reason" class="muted">
+                Waiting for the simulator to load.
+              </p>
+              <div class="metrics">
+                <div>
+                  <small>REMAINING</small
+                  ><strong id="remaining">—<span> m</span></strong>
+                </div>
+                <div>
+                  <small>WHEEL ESTIMATE</small
+                  ><strong id="speed">—<span> m/s</span></strong>
+                </div>
+              </div>
+              <div class="mission-actions">
+                <button id="pause" class="secondary" disabled>Ⅱ Pause</button
+                ><button id="cancel" class="quiet" disabled>Cancel delivery</button>
+              </div>
+              <div id="notice" role="status" aria-live="polite"></div>
+            </section>
+            <section class="panel camera-panel">
+              <div class="panel-heading compact">
+                <h2>Robot’s view</h2>
+                <span id="fps" class="eyebrow">LIVE CAMERA</span>
+              </div>
+              <div class="video">
+                <div id="camera-placeholder" class="video-placeholder">
+                  Waiting for camera
+                </div>
+                <img id="camera" class="hidden" alt="Live robot camera view" /><span
+                  id="camera-status"
+                  >Waiting for camera</span
+                >
+              </div>
+              <div class="camera-footer">
+                <span><i class="dot cyan"></i> Stationary class</span
+                ><span><i class="dot orange"></i> Moving class</span>
+              </div>
+              <a class="text-link" href="/cv" target="_blank" rel="noreferrer"
+                >Open detailed CV view ↗</a
+              >
+            </section>
+          </aside>
+        </div>
+        <div class="telemetry-row">
+          <article class="panel">
+            <span class="eyebrow">LOCAL SAFETY</span
+            ><strong id="safety">Starting</strong>
+            <p id="safety-detail">ESP32 emergency sensors stay in control.</p>
+          </article>
+          <article class="panel">
+            <span class="eyebrow">WAVESHARE / GNSS</span
+            ><strong id="gnss">Acquiring fix</strong>
+            <p id="gnss-detail">Virtual SIM7600G-H + GPS antenna</p>
+          </article>
+          <article class="panel">
+            <span class="eyebrow">WAVESHARE / CELLULAR</span
+            ><strong id="cellular">Connecting</strong>
+            <p id="cellular-detail">App commands use the simulated 4G link.</p>
+          </article>
+        </div>
+        <section class="panel activity">
+          <div class="panel-heading compact">
+            <h2>Delivery activity</h2>
+            <span class="eyebrow">THIS SESSION</span>
+          </div>
+          <div id="activity">No deliveries yet. Choose a destination to begin.</div>
+        </section>
+      </section>
+      <section id="components" class="tab-panel hidden">
+        <div class="section-intro">
+          <h2>The fixed parts list</h2>
+          <p>
+            All 19 component types are accounted for. Software tests assume correct
+            wiring; electrical and thermal behavior still need physical checks.
+          </p>
+        </div>
+        <div class="panel table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Component</th>
+                <th>Qty</th>
+                <th>What this test exercises</th>
+                <th>Coverage</th>
+              </tr>
+            </thead>
+            <tbody id="parts"></tbody>
+          </table>
+        </div>
+      </section>
+      <section id="tests" class="tab-panel hidden">
+        <div class="section-intro">
+          <h2>Test the unexpected.</h2>
+          <p>
+            These switches change the local test environment, never the real robot.
+            Restore each condition to watch the same mission recover.
+          </p>
+        </div>
+        <div id="faults" class="fault-grid"></div>
+        <section class="panel test-note">
+          <h3>What “working in simulation” means</h3>
+          <p>
+            The actual CV model reads rendered images. The shared Pi policy makes
+            navigation decisions. The compiled ESP32 firmware reads virtual sensor
+            signals and controls four physics-driven wheels. GPS and cellular behavior
+            are fixtures; radio coverage, real power, thermals, sensor calibration and
+            campus positioning are not verified here.
+          </p>
+          <p>
+            The normal GNSS fixture is deliberately optimistic so route software can be
+            tested. The 3 m uncertainty test demonstrates why uncorrected GPS alone may
+            be insufficient to keep a small robot on a narrow path.
+          </p>
+        </section>
+      </section>
+      <footer>
+        <span>DELIVERY LAB · LOCAL TEST ONLY</span
+        ><span
+          >Map traced from your annotated Google Maps reference. Original integration;
+          YOLOE / Ultralytics · Webots / Cyberbotics · Waveshare interfaces. See
+          <a href="/cv" target="_blank" rel="noreferrer">CV details</a>
+          and project credits.</span
+        >
+      </footer>
+    </main>
+  </body>
+</html>

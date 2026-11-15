@@ -1,0 +1,71 @@
+{
+  "runs_on": "laptop",
+  "robot_code_included": false,
+  "models_included": false,
+  "files": [
+    {
+      "path": "Website-Code/assets/app.css",
+      "sha256": "8b9bc9ef4392c48780dcfaf879339dbb1039f57ec5462685d05029b41c1656af"
+    },
+    {
+      "path": "Website-Code/assets/app.js",
+      "sha256": "7ae6aa4e623402506d42d07fd557c0cbe31f45a602a217b46c9b72aac59c764c"
+    },
+    {
+      "path": "Website-Code/assets/index.html",
+      "sha256": "27f74de8b88d9a6190cc458f45540e7fec326fdecf2e9e8460a6617fc1bd699a"
+    },
+    {
+      "path": "Website-Code/assets/parts.json",
+      "sha256": "32e17f4bdf45052a515ceb61be3acf0407b33ed30b9c97064ccfc6240739c758"
+    },
+    {
+      "path": "Website-Code/CODE_WALKTHROUGH.md",
+      "sha256": "3328b06615700874ce231ee3693c391723c88f33160a90d95f3dfd8e1db7e0e0"
+    },
+    {
+      "path": "Website-Code/CREDITS.md",
+      "sha256": "83dd70b0ceb84ec240b308daa13f58cba675bc619053173b4b3c2d6f64ffd7d2"
+    },
+    {
+      "path": "Website-Code/cv/index.html",
+      "sha256": "c4874be97eb4e669d8ca5b1724f9b647da3c22facf3cb0b461ead8076f696ef9"
+    },
+    {
+      "path": "Website-Code/cv/styles.css",
+      "sha256": "a13c2f54163ff4d6e79fbb541cf61de4b06cbec57f05c732d923cdf26736680b"
+    },
+    {
+      "path": "Website-Code/cv/viewer.js",
+      "sha256": "aaa21fb0717d03716c68e73c73c123bc2f33984aca508f0364da458cc3426d39"
+    },
+    {
+      "path": "Website-Code/LICENSE",
+      "sha256": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0"
+    },
+    {
+      "path": "Website-Code/preview-map.json",
+      "sha256": "d00d20c9a811dafc82130a8594edb1c2a1da40f91f6d5dcc93379aff4cbf9218"
+    },
+    {
+      "path": "Website-Code/README.md",
+      "sha256": "56c869fd4f87c3187973773875c563ca905530ed4555767e76ae16d7c1266236"
+    },
+    {
+      "path": "Website-Code/server.py",
+      "sha256": "4facae9c3ed95aac20379fec74cb07a7ff6401510dc822835ef4b8c4b7937d89"
+    },
+    {
+      "path": "Website-Code/Start Website.cmd",
+      "sha256": "2f37804ef770f7712cde80dc88a496dc36d86d38e6cd0e3542e57c789f5b7266"
+    },
+    {
+      "path": "Website-Code/test-controls.js",
+      "sha256": "ba469164d4a4097acfa457df4092015c68e447c9e9857ba641a683536dbadaad"
+    },
+    {
+      "path": "Website-Code/website.json",
+      "sha256": "4ec826ddaf536aa3db6828a8f3632270ef81c77df95baf86432d321bd7b22e3c"
+    }
+  ]
+}

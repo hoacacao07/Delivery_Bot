@@ -1,0 +1,135 @@
+[
+  {
+    "name": "Raspberry Pi 5 (4GB)",
+    "quantity": 1,
+    "test": "Shared Python CV, mission, route and safety logic on this laptop; laptop timing is measured.",
+    "coverage": "Software exercised",
+    "kind": "software"
+  },
+  {
+    "name": "ESP32 DevKit V1",
+    "quantity": 1,
+    "test": "Actual ESP32 firmware compiled for the host with a virtual Arduino HAL, serial protocol and watchdog.",
+    "coverage": "Firmware exercised",
+    "kind": "software"
+  },
+  {
+    "name": "US-100 ultrasonic sensor",
+    "quantity": 3,
+    "test": "Ray-cone echo distances, timed sampling, local emergency interlock and release behavior.",
+    "coverage": "Approximate sensor model",
+    "kind": "approximate"
+  },
+  {
+    "name": "Waveshare SIM7600G-H 4G HAT",
+    "quantity": 1,
+    "test": "CGPSINFO parser, virtual GNSS fixes, app-command transport delay, dropped connection and expired commands.",
+    "coverage": "Software + transport fixture",
+    "kind": "software"
+  },
+  {
+    "name": "SEMENERG 12V 6Ah LiFePO4 battery",
+    "quantity": 1,
+    "test": "Correct supply assumed; supply-interruption test. No discharge, battery-management or current model.",
+    "coverage": "Physical verification needed",
+    "kind": "physical"
+  },
+  {
+    "name": "Yellow TT DC gear motors",
+    "quantity": 4,
+    "test": "Four torque-limited physics motors with editable duty/speed and unequal wheel gains.",
+    "coverage": "Approximate mechanics",
+    "kind": "approximate"
+  },
+  {
+    "name": "L298N motor drivers",
+    "quantity": 2,
+    "test": "Firmware PWM/direction/braking outputs drive left/right motor sides. Voltage loss/heat are not modeled.",
+    "coverage": "Logic + approximate drive",
+    "kind": "approximate"
+  },
+  {
+    "name": "Arducam IMX708 Camera V3",
+    "quantity": 1,
+    "test": "Rendered RGB pixels, editable FOV/mount/resolution, actual YOLOE CV and camera-cover failure.",
+    "coverage": "Approximate optics + real CV",
+    "kind": "approximate"
+  },
+  {
+    "name": "MPU-6050 (GY-521)",
+    "quantity": 1,
+    "test": "Webots gyro through virtual I2C MPU registers into firmware heading integration.",
+    "coverage": "Approximate gyro model",
+    "kind": "approximate"
+  },
+  {
+    "name": "Photo interrupter modules",
+    "quantity": 4,
+    "test": "Wheel rotation creates four single-channel pulse streams; simulation assumes 20 slots per revolution.",
+    "coverage": "Pulse logic exercised",
+    "kind": "software"
+  },
+  {
+    "name": "5.1V/5A voltage regulator",
+    "quantity": 1,
+    "test": "Correct Pi supply assumed. No transient, current-limit or conversion-efficiency model.",
+    "coverage": "Physical verification needed",
+    "kind": "physical"
+  },
+  {
+    "name": "6V/10A voltage regulator",
+    "quantity": 1,
+    "test": "Correct motor supply assumed by the editable 6V motor plant.",
+    "coverage": "Physical verification needed",
+    "kind": "physical"
+  },
+  {
+    "name": "5V/1A voltage regulator",
+    "quantity": 1,
+    "test": "Correct accessory supply assumed. No electrical simulation.",
+    "coverage": "Physical verification needed",
+    "kind": "physical"
+  },
+  {
+    "name": "Thermaltake SWAFAN EX12 fans",
+    "quantity": 2,
+    "test": "Cooling is assumed available; fan power/airflow and Pi thermal throttling need a physical test.",
+    "coverage": "Physical verification needed",
+    "kind": "physical"
+  },
+  {
+    "name": "Yellow motor wheels",
+    "quantity": 4,
+    "test": "65mm diameter, 27mm width, slip/friction, wheelbase and track assumptions are editable.",
+    "coverage": "Approximate mechanics",
+    "kind": "approximate"
+  },
+  {
+    "name": "GPS antenna",
+    "quantity": 1,
+    "test": "Fix acquisition, loss, update age and uncertainty fixtures. No satellite/RF model.",
+    "coverage": "Receiver behavior fixture",
+    "kind": "approximate"
+  },
+  {
+    "name": "LTE antenna",
+    "quantity": 1,
+    "test": "Connection availability and app message latency fixture. No RF coverage or carrier registration model.",
+    "coverage": "Network behavior fixture",
+    "kind": "approximate"
+  },
+  {
+    "name": "Main power switch",
+    "quantity": 1,
+    "test": "Supply-interruption fixture; restoration requires a new mission command/verification.",
+    "coverage": "Approximate on/off fixture",
+    "kind": "approximate"
+  },
+  {
+    "name": "Fuse holder",
+    "quantity": 1,
+    "test": "Correct installation assumed; fuse sizing and fault-current protection are not simulated.",
+    "coverage": "Physical verification needed",
+    "kind": "physical"
+  }
+]
